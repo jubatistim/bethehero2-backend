@@ -10,10 +10,10 @@ module.exports = {
             .count();
 
         const incidents = await connection('incidents')
+            .where('ong_id', ong_id)
             .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
             .limit(limit)
             .offset((page-1)*5)
-            .where('ong_id', '=', ong_id)
             .select(
                 [
                     'incidents.*',
@@ -24,6 +24,10 @@ module.exports = {
                     'ongs.uf'
                 ]
             );
+
+        //incidents = incidents.where('ong_id', ong_id);
+        
+        console.log(incidents);
 
         response.header('X-Total-Count', count['count(*)']);
 
