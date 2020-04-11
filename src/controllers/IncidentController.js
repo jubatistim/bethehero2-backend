@@ -25,10 +25,6 @@ module.exports = {
                 ]
             );
 
-        //incidents = incidents.where('ong_id', ong_id);
-        
-        console.log(incidents);
-
         response.header('X-Total-Count', count['count(*)']);
 
         return response.json(incidents);
